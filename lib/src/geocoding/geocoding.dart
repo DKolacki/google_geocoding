@@ -110,4 +110,21 @@ class Geocoding {
     }
     return null;
   }
+
+  /// Geocoding from place_id is a process of converting a place_id returned from Google Places API predication,  
+  /// for example from address query autocompletion, into pair of human readable address and coordinates.
+  /// [placeId] Required parameters - The plac_id returned from Google Places API predicate.
+  Future<GeocodingResponse?> getFromPlaceId(
+    String placeId) async {
+    var queryParameters = GeocodingParameters.createPlaceIdParameters(
+      apiKEY,
+      placeId,
+    );
+    var uri = Uri.https(_authority, _unencodedPath, queryParameters);
+    var response = await NetworkUtility.fetchUrl(uri);
+    if (response != null) {
+      return GeocodingResponse.parseGeocodingResponse(response);
+    }
+    return null;
+  }
 }

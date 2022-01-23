@@ -118,4 +118,16 @@ class GeocodingParameters {
 
     return queryParameters;
   }
+
+  static Map<String, String> createPlaceIdParameters(
+    String apiKEY,
+    String placId,
+  ) {
+    Map<String, String> queryParameters = {
+      'key': apiKEY,
+      'place_id': placId,
+    };
+
+    return queryParameters; 
+  }
 }
